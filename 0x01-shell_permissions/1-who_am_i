@@ -1,1 +1,2 @@
--e#!/bin?bash \n whoami
+#!/bin/bash
+whoami
