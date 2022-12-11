@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #Ascript saying Hi best school at 9th place and Best School else
-x=0
+x=1
 while [ $x -le 10 ]
 do
     echo "Best School"
