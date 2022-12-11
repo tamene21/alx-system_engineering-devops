@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Bash scripit that displays 'Best School' 10 times
+
+counter = 0
+
+until [ $counter -gt 10]
+do
+	echo Best School
+done
