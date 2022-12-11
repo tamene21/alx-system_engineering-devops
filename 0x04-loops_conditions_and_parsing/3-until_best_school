@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 # Bash scripit that displays 'Best School' 10 times
-
-counter = 0
-
-until [ $counter -gt 9]
+x = 0
+until [ $x -gt 9]
 do
 	echo "Best School"
-	((counter++))
+	((x++))
 done
