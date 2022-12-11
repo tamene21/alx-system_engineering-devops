@@ -3,7 +3,7 @@
 
 counter = 0
 
-until [ $counter -gt 10]
+until [ $counter -gt 9]
 do
 	echo "Best School"
 	((counter++))
