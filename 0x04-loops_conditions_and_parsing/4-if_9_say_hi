@@ -3,10 +3,10 @@
 x=0
 while [ $x -le 10 ]
 do
-	echo "Best School"
-	if [ $x -le 9 ]
-	then
-		echo "Hi"
-	fi
-	((x++))
+    echo "Best School"
+    if [ $x -le 9 ]
+    then
+	echo "Hi"
+    fi
+    ((x++))
 done
