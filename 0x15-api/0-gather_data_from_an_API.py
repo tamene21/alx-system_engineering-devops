@@ -1,22 +1,24 @@
 #!/usr/bin/python3
 """
-Uses https://jsonplaceholder.typicode.com along with an employee ID to
-return information about the employee's todo list progress
+Uses the JSON placeholder api to query data about an employee
 """
 
-import requests
+from requests import get
 from sys import argv
 
 if __name__ == '__main__':
-    userId = argv[1]
-    user = requests.get("https://jsonplaceholder.typicode.com/users/{}".
-                        format(userId), verify=False).json()
-    todo = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}".
-                        format(userId), verify=False).json()
-    completed_tasks = []
-    for task in todo:
-        if task.get('completed') is True:
-            completed_tasks.append(task.get('title'))
-    print("Employee {} is done with tasks({}/{}):".
-          format(user.get('name'), len(completed_tasks), len(todo)))
-    print("\n".join("\t {}".format(task) for task in completed_tasks))
+    main_url = 'https://jsonplaceholder.typicode.com'
+    todo_url = main_url + "/user/{}/todos".format(argv[1])
+    name_url = main_url + "/users/{}".format(argv[1])
+    todo_result = get(todo_url).json()
+    name_result = get(name_url).json()
+
+    todo_num = len(todo_result)
+    todo_complete = len([todo for todo in todo_result
+                         if todo.get("completed")])
+    name = name_result.get("name")
+    print("Employee {} is done with tasks({}/{}):"
+          .format(name, todo_complete, todo_num))
+    for todo in todo_result:
+        if (todo.get("completed")):
+            print("\t {}".format(todo.get("title")))
