@@ -1,21 +1,29 @@
 #!/usr/bin/python3
-"""Getting data from API placeholder."""
-
+"""Returns information about a employee with a given ID"""
 import requests
-import sys
+from sys import argv
 
-if __name__ == '__main__':
-    """Gets API endpoint, then identify a user to display completed task info"""
-    endpoint = "https://jsonplaceholder.typicode.com/"
-    userId = sys.argv[1]
-    user = requests.get(endpoint + 'users/{}'.format(userId)).json()
-    todo = requests.get(endpoint + 'todos?userId={}'.format(userId)).json()
-    completed = []
 
-    for task in todo:
-        if task.get("completed"):
-            completed.append(task.get("title"))
-    print("Employee {} is done with task({}/{}):"
-          .format(user.get('name'), len(completed), len(todo)))
-    for task in completed:
-        print('\t', task)
+if __name__ == "__main__":
+    employee = ''
+    task_complete = 0
+    array_task_complete = []
+    tasks = 0
+    page = "https://jsonplaceholder.typicode.com/users/{}".format(argv[1])
+
+    req = requests.get(page)
+    employee = req.json()['name']
+
+    page = ("https://jsonplaceholder.typicode.com/todos?userId={}".format
+            (argv[1]))
+    req = requests.get(page)
+    for task in req.json():
+        tasks += 1
+        if task.get('completed') is True:
+            task_complete += 1
+            array_task_complete.append(task.get('title'))
+    print("Employee {} is done with tasks({}/{}):".format(employee,
+                                                          task_complete,
+                                                          tasks))
+    for task in array_task_complete:
+        print("\t", task)
