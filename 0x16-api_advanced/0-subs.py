@@ -6,8 +6,8 @@ given subreddit.
 If an invalid subreddit is given, return 0.
 """
 
-import json
 import requests
+import json
 
 def number_of_subscribers(subreddit):
     """Querries Reddit API and returns total subscribers for a given subreddit,
