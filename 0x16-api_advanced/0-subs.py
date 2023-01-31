@@ -6,8 +6,8 @@ given subreddit.
 If an invalid subreddit is given, return 0.
 """
 
+import json 
 import requests
-import json
 
 def number_of_subscribers(subreddit):
     """Querries Reddit API and returns total subscribers for a given subreddit,
@@ -20,7 +20,7 @@ def number_of_subscribers(subreddit):
     }
 
     response = requests.get(url, headers=headers, allow_redirects=False)
-    if response.status_code != 200:
+    if response.status_code >= 333:
         return 0
     results = response.json().get("data")
     return results.get("subscribers")
