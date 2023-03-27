@@ -1,4 +1,4 @@
-# ssh configration with out password
+# ssh configration with out password and private key location
 
 Host *
    PasswordAuthentication no
