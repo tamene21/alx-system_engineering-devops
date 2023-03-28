@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 #Installing nginx on a server
 
-apt-get update
-apt-get install -y nginx
+sudo apt-get update
+sudo apt-get install -y nginx
+sudo ufw allow 22
+sudo ufw allow 80
+sudo ufw --force enable
+sudo ufw status
+systemctl status nginx
 echo "Hello World!" > /var/www/html/index.html
 service nginx start 
