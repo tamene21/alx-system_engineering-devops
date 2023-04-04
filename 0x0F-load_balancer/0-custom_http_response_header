@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+#creating a custom header and configer nginx
+
+sudo apt-get install nginx -y
+systemctl status nginx
+sudo ufw status
+sudo ufw app list
+sudo ufw allow 'Nginx HTTP'
+echo 'X-Served-By' >/var/www/nginx/index.nginx-debian.html
+service  nginx restart
