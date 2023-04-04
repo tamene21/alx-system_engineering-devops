@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 #creating a custom header and configer nginx
 
 sudo apt-get install nginx -y
