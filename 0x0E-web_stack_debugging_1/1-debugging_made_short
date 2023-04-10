@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
 # making the previous script short to run on port 80
-
 sed -i 's/8080/80/g' /etc/nginx/sites-available/default
 pkill -1 nginx
-
