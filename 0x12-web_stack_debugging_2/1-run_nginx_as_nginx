@@ -1,35 +1,7 @@
 #!/usr/bin/env bash
 #Fix this container so that Nginx is running as the nginx user.
-service apache2 stop
-pkill apache2
-
-#configuring nginx
-CONFIG_LOCATION='/etc/nginx/sites-available/default'
-CONFIG="
-server {
-         listen 8080 default_server;
-         listen [::]:8080 default_server ip6only=on;
-
-         root /usr/share/nginx/html;
-         index index.html index.html;
-         #Mkae site accesseible from localhost
-      
-         server_name localhost;
-
-         location / {
-
-         try_files $uri $uri/ = 404;
-}
-
-}"
-
-printf "%s" "$CONFIG" > "$CONFIG_LOCATION"
-
-
-chown nginx /etc/nginx/nginx.conf
-sudo -u nginx chmod u+r /etc/nginx/nginx.conf
-
-
-# restart nginx
-
-sudo -u nginx service nginx restart
+chmod 777 /etc/nginx/nginx.conf
+sed -i "s/80/8080/g" /etc/nginx/sites-available/default
+sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
+pkill -9 apache
+su nginx -c "service nginx restart"
