@@ -12,7 +12,7 @@ def recurse(subreddit, hot_list=[], after="tmp"):
     """
     headers = requests.utils.default_headers()
     headers.update({'User-Agent': 'Tamene Gelaye',
-                     'From': 'tgelaye21@gmail.com'})
+                    'From': 'tgelaye21@gmail.com'})
 
     # update url each recursive call with param "after"
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
