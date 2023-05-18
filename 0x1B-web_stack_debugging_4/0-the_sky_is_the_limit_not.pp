@@ -1,13 +1,13 @@
 #Increasing trafic twards nginx
 
-exec {'fix--for-nginx':
+exec {'replace':
   provider => shell,
   commdand => 'sudo sed -i "s/ULIMIT=\"-n 15\"/ULIMIT=\"-n 4096\"/"  /etc/default/nginx',
-  path     => '/usr/bin/env/'
+  before   => exec['restart'],
 }
 
 #Restart nginx
-exec {'restart-nginx':
+exec {'restart':
   provider => shell,
-  command => 'sudo nginx restart',
+  command => 'sudo service nginx restart',
 }
